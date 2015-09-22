@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>TypeAlias</id>
+    <version>1.0.1</version>
+    <title>TypeAlias</title>
+    <description>Library that makes the unique alias of types in .NET.</description>
+    <authors>Esun Kim</authors>
+    <language>en-US</language>
+    <projectUrl>https://github.com/SaladbowlCreative/TypeAlias</projectUrl>
+    <licenseUrl>https://raw.githubusercontent.com/SaladbowlCreative/TypeAlias/master/LICENSE</licenseUrl>
+    <tags>type alias</tags>
+    <dependencies>
+		<dependency id="NetLegacySupport.Action" version="1.0.3" />
+		<dependency id="NetLegacySupport.ConcurrentDictionary" version="1.0.2" />
+    </dependencies>
+  </metadata>
+</package>
