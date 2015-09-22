@@ -31,7 +31,7 @@ Before using, types need to be aliased in following ways.
 
 #### Set explicit alias by attribute
 
-```
+```csharp
 [TypeAlias(1)]
 class AliceClass // alias of AliasClass = 1
 {
@@ -44,7 +44,7 @@ If alias left empty, auto-generated alias will be used.
 To keep this value permanent, library uses always djb2 hashing algorithm and 
 this won't be changed to keep backward compatibility.
 
-```
+```csharp
 [TypeAlias] // alias of AliasClass = TODO
 class BobClass
 {
@@ -58,7 +58,7 @@ Auto-generated alias will be between 0x100 and 0x7FFFFFFF.
 Using AddTypeAlias method can be used to set alias to type.
 This is the only way if you cannot modify source containing target types.
 
-```
+```csharp
 var table = new TypeAliasTable();
 table.AddTypeAlias(typeof(String), 10);
 ```
@@ -69,7 +69,7 @@ After setting aliases to types, we can lookup the alias from type, and vise vers
 
 #### Get an alias from a type
 
-```
+```csharp
 [TypeAlias(1)] class AliceClass {}
 [TypeAlias(2)] class BobClass {}
 
@@ -80,7 +80,7 @@ var alias2 = table.GetType(typeof(BobClass));   // alias2 = 2
 
 #### Get a type from an alias
 
-```
+```csharp
 [TypeAlias(1)] class AliceClass {}
 [TypeAlias(2)] class BobClass {}
 
@@ -94,7 +94,7 @@ var type2 = table.GetType(2); // type = typeof(BobClass)
 Define a type that will be serialized and serialized.
 In this sample, protobuf-net is used for serializing body of object.
 
-```
+```csharp
 [TypeAlias, ProtoContract]
 class AliceClass
 {
@@ -110,7 +110,7 @@ class AliceClass
 
 Define Serialize and Deserialize method. It will use type alias for saving type info.
 
-```
+```csharp
 static TypeModel TypeModel;
 static TypeAliasTable TypeAliasTable;
 
@@ -140,7 +140,7 @@ static object Deserialize(Stream stream, int length)
 
 Test drive
 
-```
+```csharp
 static void Test()
 {
     TypeModel = RuntimeTypeModel.Create();
@@ -171,7 +171,7 @@ When table scan types, an assembly containig types you need could not be loaded 
 It's the way that .NET runtime saves cpu and memory but it makes table have incomplete type list.
 You can avoid this problem by following way
 
-```
+```csharp
 static void Init()
 {
     // it cause .NET runtime to load an assembly containing ImportantType
