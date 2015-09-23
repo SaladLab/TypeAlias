@@ -1,5 +1,7 @@
 # TypeAlias
 
+![Build](https://api.travis-ci.org/SaladbowlCreative/TypeAlias.svg?branch=master)
+
 When writing .NET type info into stream, most of time Type.AssemblyQualifiedName is used.
 It's good though sometimes it doesn't fit.
 
