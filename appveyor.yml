@@ -1,4 +1,4 @@
-version: 1.0.1.{build}
+version: 1.0.2.{build}
 os: Visual Studio 2015
 configuration: Debug
 before_build:
@@ -7,3 +7,8 @@ build:
   project: TypeAlias.sln
   verbosity: minimal
 test: on
+environment:
+  NUGETKEY:
+    secure: z2fJQckgBQJ7IKfjOyrZYPM2+xDj4xYuqaUDBG7MrJs+b1bNc0vzYMTxpF6Sb1mA
+deploy_script:
+- cmd: build.cmd nuget nugetkey=%NUGETKEY% nugetpublishurl=https://www.myget.org/F/saladbowlcreative/api/v2/package nugetprerelease=%APPVEYOR_BUILD_NUMBER%
