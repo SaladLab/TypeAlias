@@ -1,0 +1,9 @@
+version: 1.0.1.{build}
+os: Visual Studio 2015
+configuration: Debug
+before_build:
+- cmd: nuget restore
+build:
+  project: TypeAlias.sln
+  verbosity: minimal
+test: on
