@@ -30,6 +30,15 @@ namespace TypeAlias
             }
         }
 
+        public void AddTypeAlias(Type type)
+        {
+            if (type == null)
+                throw new ArgumentNullException("type");
+
+            var alias = CalculateAlias(type.FullName);
+            AddTypeAlias(type, alias);
+        }
+
         public void AddTypeAlias(Type type, int alias)
         {
             if (type == null)
