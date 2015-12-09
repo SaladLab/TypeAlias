@@ -49,6 +49,9 @@
     <Compile Include="..\TypeAlias\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="..\TypeAlias\Properties\AssemblyInfoGenerated.cs">
+      <Link>Properties\AssemblyInfoGenerated.cs</Link>
+    </Compile>
     <Compile Include="..\TypeAlias\TypeAliasAttribute.cs">
       <Link>TypeAliasAttribute.cs</Link>
     </Compile>
