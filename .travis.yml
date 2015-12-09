@@ -1,2 +1,2 @@
 language: csharp
-solution: src/TypeAlias.Net40.sln
+solution: TypeAlias.sln
