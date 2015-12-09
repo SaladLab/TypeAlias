@@ -17,12 +17,12 @@ namespace TypeAlias.Tests.Net20
     {
     }
 
-    [TypeAlias(100)]
+    [TypeAlias(10)]
     internal struct TestStruct
     {
     }
 
-    [TypeAlias(101)]
+    [TypeAlias(11)]
     internal interface ITestInterface
     {
     }
@@ -36,15 +36,15 @@ namespace TypeAlias.Tests.Net20
             Assert.AreEqual(typeof(AliceClass), table.GetType(1));
             Assert.AreEqual(typeof(BobClass), table.GetType(2));
             Assert.AreEqual(typeof(EveClass), table.GetType(1747347853));
-            Assert.AreEqual(typeof(TestStruct), table.GetType(100));
-            Assert.AreEqual(typeof(ITestInterface), table.GetType(101));
+            Assert.AreEqual(typeof(TestStruct), table.GetType(10));
+            Assert.AreEqual(typeof(ITestInterface), table.GetType(11));
         }
 
         [Test]
         public static void Test_GetType_Miss()
         {
             var table = new TypeAliasTable();
-            Assert.AreEqual(null, table.GetType(10));
+            Assert.AreEqual(null, table.GetType(9));
         }
 
         [Test]
