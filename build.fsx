@@ -39,7 +39,7 @@ let projects = ([
     {   emptyProject with
         Name="TypeAlias";
         Folder="./core/TypeAlias";
-        Dependencies=[("NetLegacySupport.ConcurrentDictionary", "1.0.2")];
+        Dependencies=[("NetLegacySupport.ConcurrentDictionary", "1.1.0")];
     }]
     |> List.map (fun p -> 
         let parsedReleases =

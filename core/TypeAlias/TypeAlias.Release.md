@@ -1,3 +1,7 @@
+## 1.1.1 (Released 2015/12/10)
+
+* Set dependency of NetLegacySupport.ConcurrentDictionary to 1.1.0
+
 ## 1.1.0 (Released 2015/12/10)
 
 * Set AssemblyVersion to 1.0.0 to make a compatible dll.
