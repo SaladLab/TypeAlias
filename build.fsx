@@ -80,7 +80,7 @@ Target "AssemblyInfo" (fun _ ->
     |> List.filter (fun p -> not p.Template)
     |> List.iter (fun p -> 
         CreateCSharpAssemblyInfo (p.Folder @@ "Properties" @@ "AssemblyInfoGenerated.cs")
-          [ Attribute.Version p.AssemblyVersion
+          [ Attribute.Version ((SemVerHelper.parse p.AssemblyVersion).Major.ToString() + ".0.0")
             Attribute.FileVersion p.AssemblyVersion
             Attribute.InformationalVersion p.PackageVersion ]
         )

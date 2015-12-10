@@ -1,3 +1,7 @@
+## 1.0.3 (Released 2015/12/10)
+
+* Set AssemblyVersion to 1.0.0 to make a compatible dll.
+
 ## 1.0.2 (Released 2015/12/09)
 
 * Support interface, struct for type alias.
