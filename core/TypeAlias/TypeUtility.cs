@@ -9,6 +9,9 @@ namespace TypeAlias
     {
         private static ConcurrentDictionary<string, Type> _typeCacheMap = new ConcurrentDictionary<string, Type>();
 
+        // AssemblyProvider that will be used for traversing all types
+        public static IAssemblyProvider AssemblyProvider { get; set; } = new AssemblyProvider();
+
         // Return type if typeName is assembly qualified name or full name
         public static Type GetType(string typeName)
         {
@@ -24,7 +27,7 @@ namespace TypeAlias
             if (_typeCacheMap.TryGetValue(typeName, out cacheType))
                 return cacheType;
 
-            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+            foreach (var assembly in AssemblyProvider.GetAssemblies())
             {
                 foreach (var type in GetTypes(assembly))
                 {
@@ -39,8 +42,24 @@ namespace TypeAlias
             return null;
         }
 
+        public static Assembly GetContainingAssembly(Type type)
+        {
+#if COREFX
+            return type.GetTypeInfo().Assembly;
+#else
+            return type.Assembly;
+#endif
+        }
+
         public static IEnumerable<Type> GetTypes(Assembly assembly)
         {
+#if COREFX
+            foreach (var typeInfo in assembly.DefinedTypes)
+            {
+                if (typeInfo != null)
+                    yield return typeInfo.AsType();
+            }
+#else
             Type[] typesInAsm;
             try
             {
@@ -56,6 +75,7 @@ namespace TypeAlias
                 if (type != null)
                     yield return type;
             }
+#endif
         }
 
         public struct TypeAndAttribute<TAttribute>
@@ -68,12 +88,21 @@ namespace TypeAlias
             Assembly assembly)
             where TAttribute : Attribute
         {
+#if COREFX
+            foreach (var typeInfo in assembly.DefinedTypes)
+            {
+                var attr = typeInfo.GetCustomAttribute<TAttribute>();
+                if (attr != null)
+                    yield return new TypeAndAttribute<TAttribute> { Type = typeInfo.AsType(), Attribute = attr };
+            }
+#else
             foreach (var type in GetTypes(assembly))
             {
                 var attr = (TAttribute)Attribute.GetCustomAttribute(type, typeof(TAttribute));
                 if (attr != null)
                     yield return new TypeAndAttribute<TAttribute> { Type = type, Attribute = attr };
-            }
+            }            
+#endif
         }
     }
 }

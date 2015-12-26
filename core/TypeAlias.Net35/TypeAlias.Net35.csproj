@@ -46,21 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\TypeAlias\Properties\AssemblyInfo.cs">
-      <Link>Properties\AssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\TypeAlias\Properties\AssemblyInfoGenerated.cs">
-      <Link>Properties\AssemblyInfoGenerated.cs</Link>
-    </Compile>
-    <Compile Include="..\TypeAlias\TypeAliasAttribute.cs">
-      <Link>TypeAliasAttribute.cs</Link>
-    </Compile>
-    <Compile Include="..\TypeAlias\TypeAliasTable.cs">
-      <Link>TypeAliasTable.cs</Link>
-    </Compile>
-    <Compile Include="..\TypeAlias\TypeUtility.cs">
-      <Link>TypeUtility.cs</Link>
-    </Compile>
+    <Compile Include="..\TypeAlias\**\*.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

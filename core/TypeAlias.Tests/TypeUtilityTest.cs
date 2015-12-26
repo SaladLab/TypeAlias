@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 
-namespace TypeAlias.Tests.Net20
+namespace TypeAlias.Tests
 {
     internal class FooAttribute : Attribute
     {
@@ -18,27 +18,27 @@ namespace TypeAlias.Tests.Net20
     {
     }
 
-    public class TestTypeUtility : AssertionHelper
+    public class TypeUtilityTest : AssertionHelper
     {
         [Test]
-        public static void Test_GetType_Should_Handle_AssemblyQualifiedName()
+        public void Test_GetType_Should_Handle_AssemblyQualifiedName()
         {
             var type = TypeUtility.GetType(typeof(object).AssemblyQualifiedName);
             Assert.AreEqual(typeof(object), type);
         }
 
         [Test]
-        public static void Test_GetType_Should_Handle_FullName()
+        public void Test_GetType_Should_Handle_FullName()
         {
             var type = TypeUtility.GetType(typeof(object).FullName);
             Assert.AreEqual(typeof(object), type);
         }
 
         [Test]
-        public static void Test_GetTypes()
+        public void Test_GetTypes()
         {
             var hit = false;
-            foreach (var type in TypeUtility.GetTypes(typeof(object).Assembly))
+            foreach (var type in TypeUtility.GetTypes(TypeUtility.GetContainingAssembly(typeof(object))))
             {
                 if (type == typeof(object))
                     hit = true;
@@ -47,10 +47,11 @@ namespace TypeAlias.Tests.Net20
         }
 
         [Test]
-        public static void Test_GetTypesContainingAttribute()
+        public void Test_GetTypesContainingAttribute()
         {
             var result = new List<TypeUtility.TypeAndAttribute<FooAttribute>>(
-                TypeUtility.GetTypesContainingAttribute<FooAttribute>(typeof(TestTypeUtility).Assembly));
+                TypeUtility.GetTypesContainingAttribute<FooAttribute>(
+                    TypeUtility.GetContainingAssembly(typeof(TypeUtilityTest))));
             Assert.AreEqual(2, result.Count); // BarClass, CarClass
         }
     }

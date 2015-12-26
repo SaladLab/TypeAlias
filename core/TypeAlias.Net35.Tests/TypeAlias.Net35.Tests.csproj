@@ -48,15 +48,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\TypeAlias.Tests\Properties\AssemblyInfo.cs">
-      <Link>Properties\AssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\TypeAlias.Tests\TestTypeAliasTable.cs">
-      <Link>TestTypeAliasTable.cs</Link>
-    </Compile>
-    <Compile Include="..\TypeAlias.Tests\TestTypeUtility.cs">
-      <Link>TestTypeUtility.cs</Link>
-    </Compile>
+    <Compile Include="..\TypeAlias.Tests\**\*.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

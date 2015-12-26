@@ -18,7 +18,7 @@ namespace TypeAlias
             _alias2TypeMap = new Dictionary<int, Type>();
             _type2AliasMap = new Dictionary<Type, int>();
 
-            foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+            foreach (var assembly in TypeUtility.AssemblyProvider.GetAssemblies())
             {
                 foreach (var item in TypeUtility.GetTypesContainingAttribute<TypeAliasAttribute>(assembly))
                 {

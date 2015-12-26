@@ -25,7 +25,7 @@ namespace UseCaseForSerialization
 
         private static void Main(string[] args)
         {
-            TypeModel = RuntimeTypeModel.Create();
+            TypeModel = TypeModel.Create();
             TypeAliasTable = new TypeAliasTable();
 
             // Serialize
