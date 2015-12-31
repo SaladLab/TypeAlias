@@ -2,7 +2,7 @@ version: 1.1.1.{build}
 os: Visual Studio 2015
 configuration: Debug
 before_build:
-- cmd: nuget restore
+- cmd: nuget restore TypeAlias.sln
 build:
   project: TypeAlias.sln
   verbosity: minimal
