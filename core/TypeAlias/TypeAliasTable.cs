@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace TypeAlias
 {
@@ -10,21 +11,38 @@ namespace TypeAlias
 
         public TypeAliasTable()
         {
-            BuildTable();
+            BuildTable(TypeUtility.AssemblyProvider.GetAssemblies(), null, null);
         }
 
-        private void BuildTable()
+        public TypeAliasTable(IEnumerable<Assembly> assemblies,
+                              Func<Type, bool> filter = null,
+                              Func<Type, int> resolveAutoAlias = null)
+        {
+            BuildTable(assemblies, filter, resolveAutoAlias);
+        }
+
+        private void BuildTable(IEnumerable<Assembly> assemblies,
+                                Func<Type, bool> filter,
+                                Func<Type, int> resolveAutoAlias)
         {
             _alias2TypeMap = new Dictionary<int, Type>();
             _type2AliasMap = new Dictionary<Type, int>();
 
-            foreach (var assembly in TypeUtility.AssemblyProvider.GetAssemblies())
+            foreach (var assembly in assemblies)
             {
                 foreach (var item in TypeUtility.GetTypesContainingAttribute<TypeAliasAttribute>(assembly))
                 {
+                    if (filter != null && filter(item.Type) == false)
+                        continue;
+
                     var alias = item.Attribute.Alias;
                     if (alias == 0)
-                        alias = CalculateAlias(item.Type.FullName);
+                    {
+                        alias = resolveAutoAlias != null
+                                    ? resolveAutoAlias(item.Type)
+                                    : CalculateAlias(item.Type.FullName);
+                    }
+
                     AddTypeAlias(item.Type, alias);
                 }
             }

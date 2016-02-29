@@ -93,5 +93,32 @@ namespace TypeAlias.Tests
             table.AddTypeAlias(typeof(TypeAliasTableTest));
             Assert.AreNotEqual(0, table.GetAlias(typeof(TypeAliasTableTest)));
         }
+
+        [Test]
+        public void Test_CreateTable_WithCustomAssemblies()
+        {
+            var table = new TypeAliasTable(new[] { GetType().Assembly });
+            Assert.AreEqual(typeof(AliceClass), table.GetType(1));
+        }
+
+        [Test]
+        public void Test_CreateTable_WithFilter()
+        {
+            var table = new TypeAliasTable(new[] { GetType().Assembly },
+                                           t => t.Name.StartsWith("Alice") == false);
+            Assert.AreEqual(null, table.GetType(1));
+            Assert.AreEqual(typeof(BobClass), table.GetType(2));
+        }
+
+        [Test]
+        public void Test_CreateTable_WithCustomResolveAutoAlias()
+        {
+            var table = new TypeAliasTable(new[] { GetType().Assembly },
+                                           null,
+                                           t => t.Name.Length);
+            Assert.AreEqual(typeof(AliceClass), table.GetType(1));
+            Assert.AreEqual(typeof(EveClass), table.GetType(8));
+            Assert.AreEqual(null, table.GetType(483686294));
+        }
     }
 }

@@ -1,3 +1,7 @@
+## 1.1.2 (Released 2016/02/29)
+
+* Add filter and resolveAutoAlias to ctor of TypeAliasTable
+
 ## 1.1.1 (Released 2015/12/10)
 
 * Set dependency of NetLegacySupport.ConcurrentDictionary to 1.1.0
