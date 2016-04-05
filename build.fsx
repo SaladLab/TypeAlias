@@ -11,7 +11,7 @@ let solution =
         "./TypeAlias.sln" "Release" 
         [ { emptyProject with Name = "TypeAlias" 
                               Folder = "./core/TypeAlias"
-                              Dependencies=[("NetLegacySupport.ConcurrentDictionary", "")] } ]
+                              Dependencies=[("NetLegacySupport.ConcurrentDictionary", "1.1.0")] } ]
 
 Target "Clean" <| fun _ -> cleanBin
 
