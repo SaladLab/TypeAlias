@@ -1,5 +1,5 @@
-﻿using NUnit.Framework;
-using System.Reflection;
+﻿using System.Reflection;
+using NUnit.Framework;
 
 namespace TypeAlias.Tests
 {
@@ -32,14 +32,12 @@ namespace TypeAlias.Tests
     {
         private TypeAliasTable CreateTypeAliasTable()
         {
-            TypeUtility.AssemblyProvider = new FixedAssemblyProvider
-            (
+            TypeUtility.AssemblyProvider = new FixedAssemblyProvider(
                 new Assembly[]
                 {
                     TypeUtility.GetContainingAssembly(typeof(object)),
                     TypeUtility.GetContainingAssembly(typeof(TypeAliasTableTest))
-                }
-            );
+                });
             return new TypeAliasTable();
         }
 

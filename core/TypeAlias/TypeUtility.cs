@@ -101,7 +101,7 @@ namespace TypeAlias
                 var attr = (TAttribute)Attribute.GetCustomAttribute(type, typeof(TAttribute));
                 if (attr != null)
                     yield return new TypeAndAttribute<TAttribute> { Type = type, Attribute = attr };
-            }            
+            }
 #endif
         }
     }

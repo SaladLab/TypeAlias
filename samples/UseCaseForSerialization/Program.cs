@@ -14,19 +14,19 @@ namespace UseCaseForSerialization
 
         public override string ToString()
         {
-            return String.Format("AliceClass {{ Name: {0}, Value: {1} }}", Name, Value);
+            return string.Format("AliceClass {{ Name: {0}, Value: {1} }}", Name, Value);
         }
     }
 
     internal class Program
     {
-        private static TypeModel TypeModel;
-        private static TypeAliasTable TypeAliasTable;
+        private static TypeModel s_typeModel;
+        private static TypeAliasTable s_typeAliasTable;
 
         private static void Main(string[] args)
         {
-            TypeModel = TypeModel.Create();
-            TypeAliasTable = new TypeAliasTable();
+            s_typeModel = TypeModel.Create();
+            s_typeAliasTable = new TypeAliasTable();
 
             // Serialize
             var writeStream = new MemoryStream();
@@ -45,12 +45,12 @@ namespace UseCaseForSerialization
         private static void Serialize(Stream stream, object obj)
         {
             // Write alias of type
-            var alias = TypeAliasTable.GetAlias(obj.GetType());
+            var alias = s_typeAliasTable.GetAlias(obj.GetType());
             var aliasBuf = BitConverter.GetBytes(alias);
             stream.Write(aliasBuf, 0, aliasBuf.Length);
 
             // Write proto-buf stream of object
-            TypeModel.Serialize(stream, obj);
+            s_typeModel.Serialize(stream, obj);
         }
 
         private static object Deserialize(Stream stream, int length)
@@ -59,10 +59,10 @@ namespace UseCaseForSerialization
             var aliasBuf = new byte[4];
             stream.Read(aliasBuf, 0, aliasBuf.Length);
             var alias = BitConverter.ToInt32(aliasBuf, 0);
-            var type = TypeAliasTable.GetType(alias);
+            var type = s_typeAliasTable.GetType(alias);
 
             // Read proto-buf stream of object
-            return TypeModel.Deserialize(stream, null, type, length - aliasBuf.Length);
+            return s_typeModel.Deserialize(stream, null, type, length - aliasBuf.Length);
         }
     }
 }

@@ -1,6 +1,9 @@
 # TypeAlias
 
-![Build](https://api.travis-ci.org/SaladbowlCreative/TypeAlias.svg?branch=master)
+[![NuGet Status](http://img.shields.io/nuget/v/TypeAlias.svg?style=flat)](https://www.nuget.org/packages/TypeAlias/)
+[![Build status](https://ci.appveyor.com/api/projects/status/lwatqvnhmfsdh6iu?svg=true)](https://ci.appveyor.com/project/veblush/typealias)
+[![Coverage Status](https://coveralls.io/repos/github/SaladLab/TypeAlias/badge.svg?branch=master)](https://coveralls.io/github/SaladLab/TypeAlias?branch=master)
+[![Coverity Status](https://scan.coverity.com/projects/8458/badge.svg?flat=1)](https://scan.coverity.com/projects/saladlab-typealias)
 
 When writing .NET type info into stream, most of time Type.AssemblyQualifiedName is used.
 It's good though sometimes it doesn't fit.
