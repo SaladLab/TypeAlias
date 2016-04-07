@@ -7,8 +7,8 @@
     <authors>Esun Kim</authors>
     <owners>Esun Kim</owners>
     <description>Library that makes the unique alias of types in .NET.</description>
-    <projectUrl>https://github.com/SaladbowlCreative/TypeAlias</projectUrl>
-    <licenseUrl>https://raw.githubusercontent.com/SaladbowlCreative/TypeAlias/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/SaladLab/TypeAlias</projectUrl>
+    <licenseUrl>https://raw.githubusercontent.com/SaladLab/TypeAlias/master/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <releaseNotes>@releaseNotes@</releaseNotes>
     <copyright>Copyright © 2016 SaladLab</copyright>
