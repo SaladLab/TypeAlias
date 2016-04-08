@@ -1,0 +1,7 @@
+{
+  "#base": "./TypeAlias.unitypackage.json",
+  "id": "TypeAlias-Full",
+  "files": [
+    "$dependencies$"
+  ]
+}

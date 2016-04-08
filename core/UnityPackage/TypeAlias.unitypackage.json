@@ -1,0 +1,19 @@
+{
+  "id": "TypeAlias",
+  "dependencies": {
+    "Json-Net-Unity3D": {
+      "version": ">=8.0.0",
+      "source": "https://github.com/SaladLab/Json.Net.Unity3D",
+      "nosample": true,
+    }
+  },
+  "backup": {
+    "NetLegacySupport": {
+      "version": ">=1.0.0",
+      "source": "https://github.com/SaladLab/NetLegacySupport"
+    }  
+  },
+  "files": [
+    "../TypeAlias.Net35/bin/Release/TypeAlias.dll"
+  ]
+}
