@@ -27,15 +27,21 @@ Target "Cover" <| fun _ -> coverSolution solution
     
 Target "Coverity" <| fun _ -> coveritySolution solution "SaladLab/TypeAlias"
 
-Target "Nuget" <| fun _ ->
-    createNugetPackages solution
-    publishNugetPackages solution
+Target "Cover" <| fun _ -> coverSolution solution
 
-Target "CreateNuget" <| fun _ ->
-    createNugetPackages solution
+Target "PackNuget" <| fun _ -> createNugetPackages solution
 
-Target "PublishNuget" <| fun _ ->
-    publishNugetPackages solution
+Target "PackUnity" <| fun _ ->
+    packUnityPackage "./core/UnityPackage/TypeAlias.unitypackage.json"
+    packUnityPackage "./core/UnityPackage/TypeAlias-Full.unitypackage.json"
+
+Target "Pack" <| fun _ -> ()
+
+Target "PublishNuget" <| fun _ -> publishNugetPackages solution
+
+Target "PublishUnity" <| fun _ -> ()
+
+Target "Publish" <| fun _ -> ()
 
 Target "CI" <| fun _ -> ()
 
@@ -48,13 +54,20 @@ Target "Help" <| fun _ ->
   ==> "Build"
   ==> "Test"
 
-"Build" ==> "Nuget"
-"Build" ==> "CreateNuget"
 "Build" ==> "Cover"
 "Restore" ==> "Coverity"
 
+let isPublishOnly = getBuildParam "publishonly"
+
+"Build" ==> "PackNuget" =?> ("PublishNuget", isPublishOnly = "")
+"Build" ==> "PackUnity" =?> ("PublishUnity", isPublishOnly = "")
+"PackNuget" ==> "Pack"
+"PackUnity" ==> "Pack"
+"PublishNuget" ==> "Publish"
+"PublishUnity" ==> "Publish"
+
 "Test" ==> "CI"
 "Cover" ==> "CI"
-"Nuget" ==> "CI"
+"Publish" ==> "CI"
 
 RunTargetOrDefault "Help"
