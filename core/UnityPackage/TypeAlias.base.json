@@ -1,0 +1,12 @@
+{
+  "version": "1.1.2",
+  "authors": [ "Esun Kim" ],
+  "owners": [ "Esun Kim" ],
+  "description": "Library that makes the unique alias of types in .NET.",
+  "dependencies": {
+    "NetLegacySupport": {
+      "version": ">=1.1.0",
+      "source": "github:SaladLab/NetLegacySupport"
+    }
+  }
+}

@@ -27,8 +27,6 @@ Target "Cover" <| fun _ -> coverSolution solution
     
 Target "Coverity" <| fun _ -> coveritySolution solution "SaladLab/TypeAlias"
 
-Target "Cover" <| fun _ -> coverSolution solution
-
 Target "PackNuget" <| fun _ -> createNugetPackages solution
 
 Target "PackUnity" <| fun _ ->
