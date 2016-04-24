@@ -31,7 +31,6 @@ Target "PackNuget" <| fun _ -> createNugetPackages solution
 
 Target "PackUnity" <| fun _ ->
     packUnityPackage "./core/UnityPackage/TypeAlias.unitypackage.json"
-    packUnityPackage "./core/UnityPackage/TypeAlias-Full.unitypackage.json"
 
 Target "Pack" <| fun _ -> ()
 
