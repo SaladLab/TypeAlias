@@ -5,7 +5,7 @@
     "net20": {
       "frameworkAssemblies": {
       },
-      "compilationOptions": {
+      "buildOptions": {
       },
       "dependencies": {
         "NetLegacySupport.ConcurrentDictionary": "1.1.0"
@@ -14,7 +14,7 @@
     "net35": {
       "frameworkAssemblies": {
       },
-      "compilationOptions": {
+      "buildOptions": {
       },
       "dependencies": {
         "NetLegacySupport.ConcurrentDictionary": "1.1.0"
@@ -23,19 +23,19 @@
     "net40": {
       "frameworkAssemblies": {
       },
-      "compilationOptions": {
+      "buildOptions": {
       }
     },
-    "dotnet5.2": {
-      "compilationOptions": {
+    "netstandard1.2": {
+      "buildOptions": {
         "define": [ "COREFX" ]
       },
       "dependencies": {
-        "System.Reflection":  "4.1.0-beta-23516",
-        "System.Reflection.Extensions": "4.0.1-beta-23516",
-        "System.Collections": "4.0.11-beta-23516",
-        "System.Collections.Concurrent": "4.0.11-beta-23516",
-        "System.Runtime.InteropServices":  "4.0.21-beta-23516"
+        "System.Reflection": "4.1.0",
+        "System.Reflection.Extensions": "4.0.1",
+        "System.Collections": "4.0.11",
+        "System.Collections.Concurrent": "4.0.12",
+        "System.Runtime.InteropServices": "4.1.0"
       }
     }
   }

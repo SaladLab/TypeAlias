@@ -41,6 +41,14 @@ namespace TypeAlias.Tests
             return new TypeAliasTable();
         }
 
+        private Assembly GetAssembly()
+        {
+#if COREFX
+            return GetType().GetTypeInfo().Assembly;
+#else
+            return GetType().Assembly;
+#endif
+        }
         [Test]
         public void Test_GetType_Hit()
         {
@@ -95,14 +103,14 @@ namespace TypeAlias.Tests
         [Test]
         public void Test_CreateTable_WithCustomAssemblies()
         {
-            var table = new TypeAliasTable(new[] { GetType().Assembly });
+            var table = new TypeAliasTable(new[] { GetAssembly() });
             Assert.AreEqual(typeof(AliceClass), table.GetType(1));
         }
 
         [Test]
         public void Test_CreateTable_WithFilter()
         {
-            var table = new TypeAliasTable(new[] { GetType().Assembly },
+            var table = new TypeAliasTable(new[] { GetAssembly() },
                                            t => t.Name.StartsWith("Alice") == false);
             Assert.AreEqual(null, table.GetType(1));
             Assert.AreEqual(typeof(BobClass), table.GetType(2));
@@ -111,7 +119,7 @@ namespace TypeAlias.Tests
         [Test]
         public void Test_CreateTable_WithCustomResolveAutoAlias()
         {
-            var table = new TypeAliasTable(new[] { GetType().Assembly },
+            var table = new TypeAliasTable(new[] { GetAssembly() },
                                            null,
                                            t => t.Name.Length);
             Assert.AreEqual(typeof(AliceClass), table.GetType(1));
